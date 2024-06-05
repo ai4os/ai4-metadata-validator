@@ -1,0 +1,199 @@
+{
+    "$schema": "http://json-schema.org/draft/2020-12/schema",
+    "definitions": {
+    },
+    "type": "object",
+    "properties": {
+        "title": {
+            "description": "Name of the Data Science application.",
+            "type": "string"
+        },
+        "summary": {
+            "description": "Short text describing the value of the Data Science application.",
+            "type": "string"
+        },
+        "description": {
+            "description": "Elaborated description of the Data Science application.",
+            "type": "string"
+        },
+        "doi" : {
+            "description": "DOI of the Data Science application.",
+            "type": "string",
+            "format": "doi"
+        },
+        "links": {
+            "title": "links",
+            "type": "object",
+            "properties": {
+                "documentation": {
+                    "description": "URL pointing to the relevant documentation.",
+                    "type": "string",
+                    "format": "uri"
+                },
+                "source_code": {
+                    "description": "URL pointing to the relevant source code.",
+                    "type": "string",
+                    "format": "uri"
+                },
+                "docker_image": {
+                    "description": "URL pointing to the relevant Docker image.",
+                    "type": "string",
+                    "format": "uri"
+                },
+                "zenodo_doi": {
+                    "description": "DOI of the Zenodo record.",
+                    "type": "string",
+                    "format": "uri"
+                },
+                "dataset": {
+                    "description": "URL pointing to the relevant dataset.",
+                    "type": "string",
+                    "format": "uri"
+                },
+                "weights": {
+                    "description": "URL of file containing weights from training",
+                    "type": "string",
+                    "format": "uri"
+                },
+                "citation": {
+                    "description": "URL pointing to the relevant citation. Please use a Citation File Format (CFF) if possible.",
+                    "type": "string",
+                    "format": "uri"
+                },
+                "base_model": {
+                    "description": "URL pointing to a base model if this model is a fine-tune, adaptation, etc. of another one.",
+                    "type": "string",
+                    "format": "uri"
+                }
+            },
+            "required": [
+                "source_code"
+            ]   
+        },
+        "dates": {
+            "title": "dates",
+            "type": "object",
+            "properties": {
+                "created": {
+                    "description": "Creation date of the Data Science application.",
+                    "type": "string",
+                    "format": "date"
+                },
+                "updated": {
+                    "description": "Last update date of the Data Science application.",
+                    "type": "string",
+                    "format": "date"
+                }
+            },
+            "required": [
+                "created",
+                "updated"
+            ]
+        },
+        "libraries": {
+            "description": "Libraries used in the Data Science application.",
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+                "type": "string",
+                "enum": [
+                    "TensorFlow",
+                    "PyTorch",
+                    "Keras",
+                    "Scikit-learn",
+                    "XGBoost",
+                    "LightGBM",
+                    "CatBoost",
+                    "Other"
+                ]
+            }
+        },
+        "tasks": {
+            "description": "Topic/s for the tasks that categorize the Data Science application.",
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+                "type": "string",
+                "enum": [
+                    "Computer Vision",
+                    "Natural Language Processing",
+                    "Time Series",
+                    "Recommender Systems",
+                    "Anomaly Detection",
+                    "Regression",
+                    "Classification",
+                    "Clustering",
+                    "Dimensionality Reduction",
+                    "Generative Models",
+                    "Graph Neural Networks",
+                    "Optimization",
+                    "Reinforcement Learning",
+                    "Transfer Learning",
+                    "Uncertainty Estimation",
+                    "Other"
+                ]
+            }
+        },
+        "categories": {
+            "description": "Platform categories for the tasks that categorize the Data Science application.",
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+                "type": "string",
+                "enum": [
+                    "AI4 pre trained",
+                    "AI4 trainable",
+                    "AI4 inference",
+                    "AI4 tools"
+                ]
+            }
+        },
+        "tags": {
+            "description": "User provided tags to best describe the Data Science application.",
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+                "type": "string"
+            }
+        },
+        "data-type": {
+            "description": "Data type used in the Data Science application.",
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+                "type": "string",
+                "enum": [
+                    "Image",
+                    "Text",
+                    "Time Series",
+                    "Tabular",
+                    "Graph",
+                    "Audio",
+                    "Video",
+                    "Other"
+                ]
+            }
+        }
+    },
+    "required": [
+        "title",
+        "summary",
+        "description",
+        "links",
+        "libraries",
+        "tasks",
+        "categories",
+        "tags"
+    ],
+    "not": { 
+        "anyOf": [
+            { "required": ["tosca"] },
+            { "required": ["sources"] },
+            { "required": ["dataset_url"] },
+            { "required": ["cite_url"] },
+            { "required": ["date_creation"] },
+            { "required": ["keywords"] },
+            { "required": ["license"] }   
+        ]
+    }
+}
